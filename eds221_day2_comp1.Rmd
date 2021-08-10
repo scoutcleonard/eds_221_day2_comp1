@@ -1,0 +1,132 @@
+---
+title: "Making and Indexing Data in R"
+author: "Scout Leonard"
+date: "8/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(palmerpenguins)
+library(tidyverse)
+```
+
+## Make some vactors and check them out! 
+
+Vectors are a one dimensional sequence of values of the same class. 
+
+`c()` function, combine of concatenate, makes vectors.
+
+```{r}
+yarn <- c("merino", "alpaca", "mohair", 80)
+yarn
+
+# Check the class
+
+class(yarn)
+
+# It is a character vector
+
+taylor_swift <- c(7, 6, 80L)
+
+class(taylor_swift)
+```
+
+Every time we have a vector, everything gets assigned as the same class.
+
+```{r}
+dog_age <- c(1.4, 5.2, 6, 10)
+class(dog_age)
+typeof(dog_age)
+
+dog_miles <- c(4L, 5L, 6L)
+class(dog_miles)
+typeof(dog_miles)
+
+# `is.` asks a question 
+is.character(dog_miles)
+is.character(yarn)
+```
+
+```{r}
+dog_food <- c(teddy = "purina", 
+              khora = "alpo",
+              waffles = "fancy feast",
+              banjo = "blue diamond")
+
+dog_food
+class(dog_food)
+typeof(dog_food)
+
+dog_food[2]
+
+dog_food["khora"]
+
+# You can store stuff from the vector as it's own object: 
+khora_food <- dog_food[2]
+
+dog_size <- c(teddy = 50, khora = 55)
+
+test <- 6 + dog_size[2]
+test
+```
+
+```{r}
+cars <- c("red", "blue", "white", "purple", "yellow", "black", "silver", "pink")
+
+#Pull up a range of values in the vector 
+cars[2:5]
+
+i <- 3
+cars[i]
+
+i <- c(1, 5, 7)
+cars[i]
+
+#Mutability means you can change a value in the vector. You cannot do that in tuples in Python. 
+cars[3] <- "BURRITOS"
+cars
+```
+
+## Lists in R
+
+```{r}
+urchins <- list("blue", c(1,2,3), seq(from = 0, to = 50, by = 0.5), 1200L)
+urchins
+
+urchins [[1]]
+# Gives the contents of that element. You almost always want to use this one. 
+urchins[1]
+# Gives a list that only contains one element
+
+```
+
+```{r}
+tacos <- list(topping = c("cheese", "guac", "cilantro"),
+              filling = c("beans", "sweet potato", "veggies"),
+              price = c(6.75, 8.25, 9.50))
+
+tacos
+
+#Refer to specific elements in a list and get a vector back! 
+taco_price <- tacos[[3]]
+taco_price
+
+tacos$filling
+```
+
+## Data frames
+```{r}
+fruit <- data.frame(type = c("apple", "banana", "peach"),
+                    mass = c(130, 195, 150))
+
+fruit
+class(fruit)
+class(fruit$mass)
+# You don't need to check the class of each list because `skmr` or `summary` can! But! It is important to check the class of ur data. 
+
+fruit$type
+fruit[,1]
+```
+
